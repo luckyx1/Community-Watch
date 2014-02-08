@@ -35,7 +35,7 @@ public class ProfileActivity extends Activity {
 		nameEdit.setText(name);
 		emailEdit.setText(email);
 		
-		register = (Button) findViewById(R.id.btnRegister);
+		register = (Button) findViewById(R.id.btnSend);
 		
 		register.setOnClickListener(new View.OnClickListener() {
 

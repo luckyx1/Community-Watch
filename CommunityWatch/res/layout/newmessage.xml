@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#3b3b3b" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <!-- View Title Label -->
+
+        <TextView
+            android:id="@+id/newMessageName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:text="Name"
+            android:textColor="#fff"
+            android:textSize="25dip"
+            android:textStyle="bold" />
+
+        <!-- Name Label -->
+
+        <EditText
+            android:id="@+id/maessageText"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Send"
+            android:textColor="#fff" />
+
+        <!-- Link to Login Screen -->
+    </LinearLayout>
+
+</ScrollView>

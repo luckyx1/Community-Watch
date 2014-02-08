@@ -24,22 +24,25 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
+        public static final int action_settings=0x7f08000b;
         public static final int balst_message=0x7f080003;
         public static final int blast_name=0x7f080004;
-        public static final int btnRegister=0x7f080008;
+        public static final int btnSend=0x7f080007;
         public static final int group_id=0x7f080002;
+        public static final int maessageText=0x7f080006;
         public static final int newMessageBtn=0x7f080000;
+        public static final int newMessageName=0x7f080005;
         public static final int profileBtn=0x7f080001;
-        public static final int registerEmail=0x7f080006;
-        public static final int registerName=0x7f080005;
-        public static final int register_error=0x7f080007;
+        public static final int registerEmail=0x7f080009;
+        public static final int registerName=0x7f080008;
+        public static final int register_error=0x7f08000a;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int dashboard=0x7f030001;
         public static final int new_blast_view=0x7f030002;
-        public static final int register=0x7f030003;
+        public static final int newmessage=0x7f030003;
+        public static final int register=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f070000;
