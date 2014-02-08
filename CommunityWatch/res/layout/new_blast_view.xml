@@ -4,16 +4,11 @@
     android:orientation="vertical">
   
     <!-- Album id / Hidden by default -->
-    <TextView
-        android:id="@+id/group_id"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
      
     <!-- Album Name -->
 
     <TextView
-        android:id="@+id/balst_message"
+        android:id="@+id/blast_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="15dip"

@@ -29,10 +29,12 @@
             android:textColor="#eee" />
 
 		<!--  Name TextField -->
+
         <EditText
             android:id="@+id/registerName"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#fff" />
         
 		<!--  Email Label -->
 
@@ -43,10 +45,12 @@
             android:textColor="#eee" />
 
 		<!--  Email TextField -->
+
         <EditText
             android:id="@+id/registerEmail"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#eee" />
         
 		<!--  Password Label -->
 

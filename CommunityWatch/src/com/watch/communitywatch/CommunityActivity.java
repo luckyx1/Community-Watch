@@ -12,7 +12,7 @@ public class CommunityActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_community);
+		//setContentView(R.layout.activity_community);
 		DatabaseHandler db = new DatabaseHandler(this);
 		db.recreate_table();
         
@@ -40,7 +40,7 @@ public class CommunityActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.community, menu);
+		//getMenuInflater().inflate(R.menu.community, menu);
 		return true;
 	}
 
