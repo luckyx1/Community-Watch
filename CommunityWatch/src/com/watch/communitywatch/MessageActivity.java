@@ -14,9 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MessageActivity extends Activity {
-	SharedPreferences prefs = this.getSharedPreferences(
-		      "com.watch.communitywatch", Context.MODE_PRIVATE);
-	
+	SharedPreferences prefs;
 	EditText messageEdit;
 	Button sendBtn;
 	TextView heading;
@@ -25,6 +23,9 @@ public class MessageActivity extends Activity {
 	String message;
 	
 	public void onCreate(Bundle savedInstanceState) {
+		
+		prefs = this.getSharedPreferences("com.watch.communitywatch", 0);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newmessage);
 		

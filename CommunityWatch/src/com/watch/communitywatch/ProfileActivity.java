@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +18,12 @@ public class ProfileActivity extends Activity {
 	String email;
 	String name;
 	
-	SharedPreferences prefs = this.getSharedPreferences(
-		      "com.watch.communitywatch", Context.MODE_PRIVATE);
+	SharedPreferences prefs;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
-		
-		
+		prefs = this.getSharedPreferences("com.watch.communitywatch", 0);
 		
 		name = prefs.getString("NAME", "");
 		email = prefs.getString("EMAIL", "");
@@ -45,8 +44,16 @@ public class ProfileActivity extends Activity {
 				String newName = nameEdit.getText().toString();
 				String newEmail = emailEdit.getText().toString();
 				
-				prefs.edit().putString("NAME", newName);
-				prefs.edit().putString("EMAIL", newEmail);
+				Log.d("PROFILE", "Name is: "+newName);
+				Log.d("PROFILE", "Email is: "+newEmail);
+				
+				SharedPreferences.Editor editor = prefs.edit();
+				editor.putString("NAME", newName);
+				editor.putString("EMAIL", newEmail);
+				editor.commit();
+				
+				Log.d("PROFILE-CHECK", "Current pref name: "+ prefs.getString("NAME", ""));
+				Log.d("PROFILE-CHECK", "Current pref email: "+ prefs.getString("EMAIL", ""));
 				
 				Intent i = new Intent(getApplicationContext(),
 						DashboardActivity.class);
