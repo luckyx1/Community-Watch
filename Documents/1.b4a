@@ -1,0 +1,77 @@
+﻿Version=2.71
+IconFile=
+NumberOfModules=1
+Module1=Service1
+ModuleVisible1=1
+Package=b4a.example
+DoNotOverwriteManifest=False
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+UserTypesHint=
+NumberOfFiles=1
+File1=1.bal
+NumberOfLibraries=4
+Library1=core
+Library2=network
+Library3=randomaccessfile
+Library4=wifidirect
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Wifi-Direct Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	
+End Sub
+
+Sub Globals
+	Dim lblDevices As Label
+	Dim lblConnected As Label
+	Dim lblEnabled As Label
+	Dim btnConnect As Button
+	Dim btnSendHello As Button
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("1")
+	If FirstTime Then
+		StartService(Service1)
+	End If
+End Sub
+
+Sub Activity_Resume
+	UpdateUi
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Public Sub UpdateUi
+	lblDevices.Text = Service1.lblDevicesText
+	lblEnabled.Text = Service1.lblEnabledText
+	lblConnected.Text = Service1.lblConnectedText
+	btnConnect.Enabled = Service1.btnConnectEnabled
+	btnSendHello.Enabled = Service1.btnSendHelloEnabled
+End Sub
+
+Sub btnDiscover_Click
+	CallSub(Service1, "Discover")
+End Sub
+Sub btnConnect_Click
+	CallSub(Service1, "Connect")
+End Sub
+
+Sub btnSendHello_Click
+	CallSub2(Service1, "SendMessage", "Hello")
+End Sub
+
