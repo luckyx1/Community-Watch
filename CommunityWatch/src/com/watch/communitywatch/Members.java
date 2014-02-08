@@ -5,22 +5,25 @@ public class Members {
     int _id;
     String _name;
     String _message;
+    String _email;
      
     // Empty constructor
     public Members(){
          
     }
     // constructor
-    public Members(int id, String name, String _message){
+    public Members(int id, String name, String _message, String _email){
         this._id = id;
         this._name = name;
         this._message = _message;
+        this._email = _email;
     }
      
     // constructor
-    public Members(String name, String _message){
+    public Members(String name, String _message, String _email){
         this._name = name;
         this._message = _message;
+        this._email = _email;
     }
     // getting ID
     public int getID(){
@@ -42,14 +45,22 @@ public class Members {
         this._name = name;
     }
      
-    // getting phone number
+    // getting message
     public String getMessage(){
         return this._message;
     }
      
-    // setting phone number
+    // setting message
     public void setMessage(String _message){
         this._message = _message;
+    }
+    //getting email
+    public String getEmail(){
+    	return this._email;
+    }
+    //setting email
+    public void setEmail(String email){
+    	this._email = email;
     }
 
 }

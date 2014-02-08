@@ -9,11 +9,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 	// All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
  
     // Database Name
     private static final String DATABASE_NAME = "COMMUNITY";
@@ -25,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_MESSAGE = "message";
+    private static final String KEY_EMAIL = "email";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,23 +40,43 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
+        Log.d("info:", "calling oncreate");
+		callDB(db);
+		
+	}
+	
+	public void callDB(SQLiteDatabase db){
+		
+		db.execSQL("DROP TABLE IF EXISTS " + Feed);
 		String CREATE_COMMUNITY_TABLE = "CREATE TABLE " + Feed + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_MESSAGE + " TEXT" + ")";
+                + KEY_MESSAGE + " TEXT," + KEY_EMAIL + " TEXT"+")";
+		 Log.d("current: ",CREATE_COMMUNITY_TABLE);
+		
         db.execSQL(CREATE_COMMUNITY_TABLE);
 		
+	}
+	
+	public void recreate_table(){
+	    SQLiteDatabase db = this.getWritableDatabase();
+
+		db.execSQL("DROP TABLE IF EXISTS " + Feed);
+		 
+        // Create tables again
+        onCreate(db);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		// Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + Feed);
- 
-        // Create tables again
-        onCreate(db);
+		recreate_table();
+		
+
+        
 		
 	}
+	
+	
 	
 	// Adding new contact
 	public void addMember(Members member) {
@@ -63,6 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		    ContentValues values = new ContentValues();
 		    values.put(KEY_NAME, member.getName()); // Member Name
 		    values.put(KEY_MESSAGE, member.getMessage()); // Member Message
+		    values.put(KEY_EMAIL, member.getEmail()); // Member Email
 		 
 		    // Inserting Row
 		    db.insert(Feed, null, values);
@@ -74,13 +97,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		 
 	    Cursor cursor = db.query(Feed, new String[] { KEY_ID,
-	            KEY_NAME, KEY_MESSAGE }, KEY_ID + "=?",
-	            new String[] { String.valueOf(id) }, null, null, null, null);
+	            KEY_NAME, KEY_MESSAGE, KEY_EMAIL }, KEY_ID + "=?",
+	            new String[] { String.valueOf(id) }, null, null, null);
 	    if (cursor != null)
 	        cursor.moveToFirst();
 	 
 	    Members member = new Members(Integer.parseInt(cursor.getString(0)),
-	            cursor.getString(1), cursor.getString(2));
+	            cursor.getString(1), cursor.getString(2), cursor.getString(3) );
 	    // return member
 	    return member;
 	}
@@ -101,6 +124,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	            member.setID(Integer.parseInt(cursor.getString(0)));
 	            member.setName(cursor.getString(1));
 	            member.setMessage(cursor.getString(2));
+	            member.setEmail(cursor.getString(3));
 	            // Adding contact to list
 	            memberList.add(member);
 	        } while (cursor.moveToNext());
@@ -127,6 +151,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    ContentValues values = new ContentValues();
 	    values.put(KEY_NAME, member.getName());
 	    values.put(KEY_MESSAGE, member.getMessage());
+	    values.put(KEY_EMAIL, member.getMessage());
+
 	 
 	    // updating row
 	    return db.update(Feed, values, KEY_ID + " = ?",
