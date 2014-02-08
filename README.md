@@ -8,3 +8,7 @@ http://www.basic4ppc.com/android/forum/threads/android-wifi-direct-tutorial.3040
 
 for the api
 http://developer.android.com/reference/android/net/wifi/p2p/package-summary.html
+
+
+example from andorid
+http://developer.android.com/guide/topics/connectivity/wifip2p.html
